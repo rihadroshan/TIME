@@ -49,23 +49,23 @@
             const seconds = String(now.getSeconds()).padStart(2, '0');
             const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
 
-            const timeString = `${hours}:${minutes}:${seconds}.${milliseconds}`;
-            const day = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const year = now.getFullYear();
-            const dateString = `${day}/${month}/${year}`;
-
             const preciseTime = performance.now();
             const microseconds = Math.floor((preciseTime % 1000) * 1000);
             const nanoseconds = Math.floor((preciseTime % 1) * 1e6);
             const picoseconds = Math.floor((preciseTime % 0.001) * 1e9);
             const femtoseconds = Math.floor((preciseTime % 0.000001) * 1e12);
-
+            
+            const timeString = `${hours}:${minutes}:${seconds}.${milliseconds}`;
             document.getElementById('time').textContent = timeString;
             document.getElementById('date').textContent = dateString;
             document.getElementById('subtime').textContent =
                 `${microseconds} ${nanoseconds}` +
                 `${picoseconds} ${femtoseconds}`;
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const dateString = `${day}/${month}/${year}`;
+
         }
 
         setInterval(updateTime, 1);
