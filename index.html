@@ -24,9 +24,8 @@
         }
 
         .subtime {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-top: 1rem;
-            white-space: pre-wrap;
         }
 
         .date {
@@ -38,8 +37,8 @@
 <body>
     <div>
         <div class="time" id="time"></div>
-        <div class="date" id="date"></div>
         <div class="subtime" id="subtime"></div>
+        <div class="date" id="date"></div>
     </div>
 
     <script>
@@ -55,19 +54,18 @@
             const microseconds = Math.floor((preciseTime % 1000) * 1000);
             const nanoseconds = Math.floor((preciseTime % 1) * 1e6);
             const picoseconds = Math.floor((preciseTime % 0.001) * 1e9);
-            const femtoseconds = Math.floor((preciseTime % 0.000001) * 1e12);
 
             const timeString = `${hours}:${minutes}:${seconds}.${milliseconds}`;
             document.getElementById('time').textContent = timeString;
+
+            const subtimeString = `Picoseconds: ${picoseconds} | Nanoseconds: ${nanoseconds} | Microseconds: ${microseconds} | Milliseconds: ${milliseconds}`;
+            document.getElementById('subtime').textContent = subtimeString;
 
             const day = String(now.getDate()).padStart(2, '0');
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const year = now.getFullYear();
             const dateString = `${day}/${month}/${year}`;
             document.getElementById('date').textContent = dateString;
-
-            const subtimeString = `Femtoseconds: ${femtoseconds}\nPicoseconds: ${picoseconds}\nNanoseconds: ${nanoseconds}\nMicroseconds: ${microseconds}`;
-            document.getElementById('subtime').textContent = subtimeString;
         }
 
         setInterval(updateTime, 1);
