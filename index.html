@@ -58,7 +58,7 @@
             const timeString = `${hours}:${minutes}:${seconds}.${milliseconds}`;
             document.getElementById('time').textContent = timeString;
 
-            const subtimeString = `Picoseconds: ${picoseconds} | Nanoseconds: ${nanoseconds} | Microseconds: ${microseconds} | Milliseconds: ${milliseconds}`;
+            const subtimeString = `${picoseconds} ${nanoseconds} ${microseconds} ${milliseconds}`;
             document.getElementById('subtime').textContent = subtimeString;
 
             const day = String(now.getDate()).padStart(2, '0');
