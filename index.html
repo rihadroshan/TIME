@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveClock</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/ico">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            cursor: none;
+        }
+
+        .time {
+            font-size: 4rem;
+        }
+
+        .date {
+            font-size: 2rem;
+            margin-top: 1rem;
+        }
+
+        .subtime {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="time" id="time"></div>
+        <div class="date" id="date"></div>
+        <div class="subtime" id="subtime"></div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+            const timeString = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const dateString = `${day}/${month}/${year}`;
+
+            const preciseTime = performance.now();
+            const microseconds = Math.floor((preciseTime % 1000) * 1000);
+            const nanoseconds = Math.floor((preciseTime % 1) * 1e6);
+            const picoseconds = Math.floor((preciseTime % 0.001) * 1e9);
+            const femtoseconds = Math.floor((preciseTime % 0.000001) * 1e12);
+
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+            document.getElementById('subtime').textContent =
+                `${microseconds} ${nanoseconds}` +
+                `${picoseconds} ${femtoseconds}`;
+        }
+
+        setInterval(updateTime, 1);
+        updateTime(); 
+    </script>
+</body>
+</html>
