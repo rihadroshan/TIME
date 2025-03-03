@@ -1,1 +1,1 @@
-### $ite: https://rihadroshan.github.io/TIME
+### Site: https://rihadroshan.github.io/TIME
