@@ -1,2 +1,1 @@
-<a href="https://rihadroshan.github.io/TIME" target="_blank">Visit TIME</a>
-
+[Visit TIME](https://rihadroshan.github.io/TIME)
